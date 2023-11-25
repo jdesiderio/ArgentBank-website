@@ -2,7 +2,7 @@ import Button from "./button"
 
 function AccountCard({ account, amount,balance }) {
   return (
-    <section class="account">
+    <section className="account">
       <div className="account-content-wrapper">
         <h3 className="account-title">{account}</h3>
         <p className="account-amount">{amount}</p>

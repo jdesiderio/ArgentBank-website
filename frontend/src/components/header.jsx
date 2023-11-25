@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import logo from '../assets/img/argentBankLogo.png';
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import logo from '../assets/img/argentBankLogo.png'
 
 function Header() {
-  // Supposons que `isLoggedIn` détermine si l'utilisateur est connecté ou non.
-  // Vous remplaceriez cela par votre propre logique d'authentification.
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // initialement false
-  const [userName, setUserName] = useState(); // Remplacer par le nom d'utilisateur connecté
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false) 
+  const [userName, setUserName] = useState() 
   return (
     <nav className="main-nav">
       <Link to="/" className="main-nav-logo">
@@ -35,7 +32,7 @@ function Header() {
         </div>
       )}
     </nav>
-  );
+  )
 }
 
-export default Header;
+export default Header
