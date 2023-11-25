@@ -1,7 +1,7 @@
 import AccountCard from "../components/accountCard"
 import Button from "../components/button"
 
-function UserPage() {
+function ProfilePage() {
   return (
     <main className="main bg-dark">
       <div className="header">
@@ -30,4 +30,4 @@ function UserPage() {
     </main>
   )}
 
-  export default UserPage
+  export default ProfilePage
