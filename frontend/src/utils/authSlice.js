@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { loginUser } from './authThunk'
 
+const tokenFromStorage = localStorage.getItem('token')
+
 const initialState = {
-  user: null,
+  user: tokenFromStorage ? { token: tokenFromStorage } : null,
   isLoading: false,
   error: null,
 }

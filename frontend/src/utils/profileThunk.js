@@ -2,15 +2,17 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 
 export const fetchProfile = createAsyncThunk(
   'profile/fetchProfile',
-  async (_, { getState, rejectWithValue }) => {
-    const token = getState().auth.token
+  async (_, { rejectWithValue }) => {
+    const token = localStorage.getItem('token')
     if (!token) {
       return rejectWithValue('Aucun token trouvé')
     }
     try {
       const response = await fetch('http://localhost:3001/api/v1/user/profile', {
+        method: 'POST',  
         headers: {
           'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
         },
       })
       const data = await response.json()

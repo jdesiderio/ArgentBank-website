@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { loginUser } from '../utils/authThunk.js'
 import Button from './button.jsx'
