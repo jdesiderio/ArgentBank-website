@@ -1,10 +1,18 @@
-import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../assets/img/argentBankLogo.png'
+import { useSelector, useDispatch } from 'react-redux'
+import { signOut } from '../utils/authSlice'
 
 function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false) 
-  const [userName, setUserName] = useState() 
+  const dispatch = useDispatch()
+  const user = useSelector((state) => state.auth.user)
+  const firstName = useSelector((state) => state.profile.firstName)
+
+
+  const handleSignOut = () => {
+    dispatch(signOut())
+  }
+
   return (
     <nav className="main-nav">
       <Link to="/" className="main-nav-logo">
@@ -12,13 +20,13 @@ function Header() {
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
       
-      {isLoggedIn ? (
+      {user ? (
         <div>
-          <Link className="main-nav-item" to="/user/:id">
+          <Link className="main-nav-item" to="/profile">
             <i className="fa fa-user-circle"></i>
-            {userName}
+            {firstName}
           </Link>
-          <Link className="main-nav-item" to="/" onClick={() => setIsLoggedIn(false)}>
+          <Link className="main-nav-item" to="/" onClick={handleSignOut}>
             <i className="fa fa-sign-out"></i>
             Sign Out
           </Link>

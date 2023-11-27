@@ -1,8 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import { fetchProfile } from './profileThunk'
 
 export const loginUser = createAsyncThunk(
   'auth/loginUser',
-  async ({ username, password }, { rejectWithValue }) => {
+  async ({ username, password }, { dispatch, rejectWithValue }) => {
     try {
       const response = await fetch('http://localhost:3001/api/v1/user/login', {
         method: 'POST',
@@ -15,6 +16,7 @@ export const loginUser = createAsyncThunk(
       if (!response.ok) {
         throw new Error(data.message || 'Unable to login')
       }
+      dispatch(fetchProfile())
       return data
     } catch (error) {
       console.error('Erreur lors de la connexion:', error)

@@ -16,7 +16,7 @@ function Login() {
     e.preventDefault()
     dispatch(loginUser({ username, password }))
     .unwrap()
-      .then(() => navigate('/user'))
+      .then(() => navigate('/profile'))
       .catch((error) => console.error('Erreur de connexion:', error))
   }
 

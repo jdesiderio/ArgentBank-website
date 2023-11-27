@@ -1,11 +1,14 @@
 import AccountCard from "../components/accountCard"
 import Button from "../components/button"
+import { useSelector } from "react-redux"
 
 function ProfilePage() {
+  const profile = useSelector((state) => state.profile)
+
   return (
     <main className="main bg-dark">
       <div className="header">
-        <h1>Welcome back<br />Tony Jarvis!</h1>
+        <h1>Welcome back<br />{profile.firstName} {profile.lastName}!</h1>
         <Button 
           className="edit-button"
           text="Edit Name"
