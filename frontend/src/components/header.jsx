@@ -5,8 +5,7 @@ import { signOut } from '../utils/authSlice'
 
 function Header() {
   const dispatch = useDispatch()
-  const user = useSelector((state) => state.auth.user)
-  const firstName = useSelector((state) => state.profile.firstName)
+  const token = useSelector((state) => state.auth.user)
 
 
   const handleSignOut = () => {
@@ -20,11 +19,11 @@ function Header() {
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
       
-      {user ? (
+      {token ? (
         <div>
           <Link className="main-nav-item" to="/profile">
             <i className="fa fa-user-circle"></i>
-            {firstName}
+            firstName
           </Link>
           <Link className="main-nav-item" to="/" onClick={handleSignOut}>
             <i className="fa fa-sign-out"></i>

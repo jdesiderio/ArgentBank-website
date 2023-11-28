@@ -1,0 +1,37 @@
+.edit-title {
+  color: #fff;
+}
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding-bottom: 25px;
+  div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    label {
+      color: #fff;
+      width: 100px;
+    }
+    input {
+      border-radius: 5px;
+      width: 120px;
+    }
+    input[readonly] {
+      background-color: #e0e0e0; 
+      cursor: not-allowed;
+      color: #757575;
+    }
+  }
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    .actions-btn {
+      padding: 5px;
+      width: 80px;
+    }
+  }
+} 

@@ -1,19 +1,48 @@
+import { useState } from 'react'
 import AccountCard from "../components/accountCard"
 import Button from "../components/button"
+import EditForm from "../components/editForm"
 import { useSelector } from "react-redux"
 
 function ProfilePage() {
-  const profile = useSelector((state) => state.profile)
+  const profile = useSelector(state => state.profile)
+  const [editMode, setEditMode] = useState(false)
+
+  const handleEditClick = () => {
+    setEditMode(true)
+  }
+
+  const handleFormSubmit = (updatedValues) => {
+    // Dispatch an action to update the username in the Redux store
+    setEditMode(false)
+  }
+
+  const handleCancel = () => {
+    setEditMode(false)
+  }
 
   return (
     <main className="main bg-dark">
-      <div className="header">
-        <h1>Welcome back<br />{profile.firstName} {profile.lastName}!</h1>
-        <Button 
-          className="edit-button"
-          text="Edit Name"
+      {editMode ? (
+        <EditForm 
+          initialValues={{
+            firstName: profile.firstName, 
+            lastName: profile.lastName,
+            username: profile.username
+          }}
+          onSubmit={handleFormSubmit}
+          onCancel={handleCancel}
         />
-      </div>
+      ) : (
+        <div className="header">
+          <h1>Welcome back<br />{profile.firstName} {profile.lastName}!</h1>
+          <Button 
+            className="edit-button"
+            text="Edit Username"
+            onClick={handleEditClick}
+          />
+        </div>
+      )}
       <h2 className="sr-only">Accounts</h2>
         <AccountCard 
           account="Argent Bank Checking (x8349)"

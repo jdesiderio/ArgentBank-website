@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+//import { fetchProfile } from './profileThunk'
 
 export const loginUser = createAsyncThunk(
   'auth/loginUser',
@@ -12,7 +13,6 @@ export const loginUser = createAsyncThunk(
         body: JSON.stringify({ email: username, password }),
       })
       const data = await response.json()
-      console.log(data)
       if (!response.ok) {
         throw new Error(data.message || 'Unable to login')
       }
