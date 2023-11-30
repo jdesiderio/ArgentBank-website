@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import logo from '../assets/img/argentBankLogo.png'
+import logo from '../assets/img/argentBankLogo.webp'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { signOut } from '../utils/authSlice'
@@ -29,7 +29,7 @@ function Header() {
       </Link>
       
       {token ? (
-        <div>
+        <div className="main-nav-container">
           <Link className="main-nav-item" to="/profile">
             <i className="fa fa-user-circle"></i>
             {profile.firstName}
@@ -40,7 +40,7 @@ function Header() {
           </Link>
         </div>
       ) : (
-        <div>
+        <div className="main-nav-container">
           <Link to="/signIn" className="main-nav-item">
             <i className="fa fa-user-circle"></i>
             Sign In
