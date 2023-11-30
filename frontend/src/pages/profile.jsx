@@ -1,22 +1,30 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchProfile } from '../utils/profileThunk'
 import AccountCard from "../components/accountCard"
 import Button from "../components/button"
 import EditForm from "../components/editForm"
-import { useSelector } from "react-redux"
+
 
 function ProfilePage() {
-  const profile = useSelector(state => state.profile)
+  const dispatch = useDispatch()
+  const token = useSelector(state => state.auth.user?.token)
+  const profile = useSelector(state => state.user)
+
+  useEffect(() => {
+    if (token) {
+      dispatch(fetchProfile())
+    }
+  }, [token, dispatch])
+
   const [editMode, setEditMode] = useState(false)
 
   const handleEditClick = () => {
     setEditMode(true)
   }
-
   const handleFormSubmit = (updatedValues) => {
-    // Dispatch an action to update the username in the Redux store
     setEditMode(false)
   }
-
   const handleCancel = () => {
     setEditMode(false)
   }

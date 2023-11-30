@@ -1,12 +1,21 @@
 import { Link } from 'react-router-dom'
 import logo from '../assets/img/argentBankLogo.png'
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { signOut } from '../utils/authSlice'
+import { fetchProfile } from '../utils/profileThunk'
 
 function Header() {
   const dispatch = useDispatch()
-  const token = useSelector((state) => state.auth.user)
+  const token = useSelector((state) => state.auth.user?.token) 
+  
+  const profile = useSelector(state => state.user)
 
+  useEffect(() => {
+    if (token) {
+      dispatch(fetchProfile())
+    }
+  }, [token, dispatch])
 
   const handleSignOut = () => {
     dispatch(signOut())
@@ -23,7 +32,7 @@ function Header() {
         <div>
           <Link className="main-nav-item" to="/profile">
             <i className="fa fa-user-circle"></i>
-            firstName
+            {profile.firstName}
           </Link>
           <Link className="main-nav-item" to="/" onClick={handleSignOut}>
             <i className="fa fa-sign-out"></i>

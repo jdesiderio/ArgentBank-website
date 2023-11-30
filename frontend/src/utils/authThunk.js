@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-//import { fetchProfile } from './profileThunk'
 
 export const loginUser = createAsyncThunk(
   'auth/loginUser',

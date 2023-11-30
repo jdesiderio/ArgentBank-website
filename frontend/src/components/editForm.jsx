@@ -18,7 +18,7 @@ const EditForm = ({ onSubmit, onCancel, initialValues }) => {
         <input 
           id="username" 
           type="text" 
-          value={username} 
+          value={initialValues.username} 
           onChange={(e) => setUsername(e.target.value)} 
         />
         </div>

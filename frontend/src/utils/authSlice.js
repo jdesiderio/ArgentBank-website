@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { loginUser } from './authThunk'
 
-const tokenFromStorage = localStorage.getItem('token')
+const tokenFromStorage = sessionStorage.getItem('token')
 
 const initialState = {
   user: tokenFromStorage ? { token: tokenFromStorage } : null,
@@ -15,7 +15,7 @@ const authSlice = createSlice({
   reducers: {
     signOut: (state) => {
       state.user = null
-      localStorage.removeItem('token')
+      sessionStorage.removeItem('token')
     },
   },
   extraReducers: (builder) => {
@@ -26,8 +26,8 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.isLoading = false
-        state.user = action.payload
-        localStorage.setItem('token', action.payload)
+        state.user = action.payload.body.token
+        sessionStorage.setItem('token', action.payload.body.token)
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false
