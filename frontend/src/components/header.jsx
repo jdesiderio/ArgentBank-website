@@ -7,7 +7,7 @@ import { fetchProfile } from '../utils/profileThunk'
 
 function Header() {
   const dispatch = useDispatch()
-  const token = useSelector((state) => state.auth.user?.token) 
+  const token = sessionStorage.getItem('token')
   
   const profile = useSelector(state => state.user)
 

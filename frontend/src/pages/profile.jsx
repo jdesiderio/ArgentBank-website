@@ -1,15 +1,19 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchProfile } from '../utils/profileThunk'
+import { fetchProfile, updateProfile } from '../utils/profileThunk'
 import AccountCard from "../components/accountCard"
 import Button from "../components/button"
 import EditForm from "../components/editForm"
 
-
 function ProfilePage() {
   const dispatch = useDispatch()
-  const token = useSelector(state => state.auth.user?.token)
+  const token = sessionStorage.getItem('token')
   const profile = useSelector(state => state.user)
+  const initialValues = {
+    firstName: profile.firstName || '', 
+    lastName: profile.lastName || '', 
+    userName: profile.userName || '', 
+  }
 
   useEffect(() => {
     if (token) {
@@ -23,7 +27,15 @@ function ProfilePage() {
     setEditMode(true)
   }
   const handleFormSubmit = (updatedValues) => {
-    setEditMode(false)
+    dispatch(updateProfile({ userName: updatedValues.userName }))
+      .unwrap()
+      .then(() => {
+        setEditMode(false)
+        dispatch(fetchProfile())
+      })
+      .catch((error) => {
+        console.error('Error updating profile:', error)
+      })
   }
   const handleCancel = () => {
     setEditMode(false)
@@ -33,11 +45,7 @@ function ProfilePage() {
     <main className="main bg-dark">
       {editMode ? (
         <EditForm 
-          initialValues={{
-            firstName: profile.firstName, 
-            lastName: profile.lastName,
-            username: profile.username
-          }}
+          initialValues={initialValues}
           onSubmit={handleFormSubmit}
           onCancel={handleCancel}
         />

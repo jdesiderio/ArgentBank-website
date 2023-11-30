@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import Button from './button.jsx'
 
 function Login() {
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('') 
   const [password, setPassword] = useState('')
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -13,18 +13,18 @@ function Login() {
 
   const handleSubmit = e => {
     e.preventDefault()
-    dispatch(loginUser({ username, password }))
+    dispatch(loginUser({ email, password }))
     .unwrap()
       .then(() => navigate('/profile'))
-      .catch((error) => console.error('Erreur de connexion:', error))
+      .catch((error) => console.error('Login error:', error)) 
   }
 
   return (
     <>
       <form onSubmit={handleSubmit}>
         <div className="input-wrapper">
-          <label htmlFor="username">Username</label>
-          <input type="text" id="username" name="email" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <label htmlFor="email">Username</label> 
+          <input type="email" id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} /> 
         </div>
         <div className="input-wrapper">
           <label htmlFor="password">Password</label>

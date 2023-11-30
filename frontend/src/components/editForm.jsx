@@ -2,11 +2,11 @@ import { useState } from 'react'
 import Button from "../components/button"
 
 const EditForm = ({ onSubmit, onCancel, initialValues }) => {
-  const [username, setUsername] = useState(initialValues.username)
+  const [userName, setUsername] = useState(initialValues.userName || '')
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    onSubmit({ username })
+    onSubmit({ userName })
   }
 
   return (
@@ -18,7 +18,7 @@ const EditForm = ({ onSubmit, onCancel, initialValues }) => {
         <input 
           id="username" 
           type="text" 
-          value={initialValues.username} 
+          value={userName} 
           onChange={(e) => setUsername(e.target.value)} 
         />
         </div>

@@ -2,14 +2,14 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 
 export const loginUser = createAsyncThunk(
   'auth/loginUser',
-  async ({ username, password }, { dispatch, rejectWithValue }) => {
+  async ({ email, password }, { rejectWithValue }) => {
     try {
       const response = await fetch('http://localhost:3001/api/v1/user/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email: username, password }),
+        body: JSON.stringify({ email, password }),  // Changed from username to email
       })
       const data = await response.json()
       if (!response.ok) {
@@ -17,7 +17,7 @@ export const loginUser = createAsyncThunk(
       }
       return data
     } catch (error) {
-      console.error('Erreur lors de la connexion:', error)
+      console.error('Login error:', error)  // Modified error message
       return rejectWithValue(error.message)
     }
   }

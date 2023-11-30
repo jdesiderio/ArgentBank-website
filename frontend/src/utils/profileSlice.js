@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { fetchProfile } from './profileThunk'
+import { fetchProfile, updateProfile } from './profileThunk'
 import { signOut } from './authSlice'
 
 const initialState = {
   firstName: '',
   lastName: '',
   email: '',
-  username: '',
+  userName: '',
   status: 'idle',
   error: null
 }
@@ -26,9 +26,20 @@ const profileSlice = createSlice({
         state.firstName = action.payload.body.firstName
         state.lastName = action.payload.body.lastName
         state.email = action.payload.body.email
-        state.username = action.payload.body.userName
+        state.userName = action.payload.body.userName
       })
       .addCase(fetchProfile.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.payload
+      })
+      .addCase(updateProfile.pending, (state) => {
+        state.status = 'loading'
+      })
+      .addCase(updateProfile.fulfilled, (state, action) => {
+        state.status = 'succeeded'
+        state.userName = action.payload.userName
+      })
+      .addCase(updateProfile.rejected, (state, action) => {
         state.status = 'failed'
         state.error = action.payload
       })
