@@ -1,7 +1,7 @@
 button {
-  border-color: #00bc77;
-  background-color: #00bc77;
-  color: #fff;
+  border-color: $color-button;
+  background-color: $color-button;
+  color: $color-background-default;
   font-weight: bold;
   
 }
@@ -15,7 +15,7 @@ button {
 }
 
 .transaction-button {
-  @media (min-width: 720px) {
+  @media (min-width: $breakpoint-small) {
     width: 200px;
   }
 }

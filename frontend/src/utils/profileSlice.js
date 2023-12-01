@@ -1,28 +1,31 @@
+// Profile Slice Reducer
+
 import { createSlice } from '@reduxjs/toolkit'
 import { fetchProfile, updateProfile } from './profileThunk'
 import { signOut } from './authSlice'
 
+// Initial state for user profile
 const initialState = {
   firstName: '',
   lastName: '',
   email: '',
   userName: '',
-  status: 'idle',
-  error: null
+  status: 'idle', // Loading status indicator
+  error: null, // Error information
 }
 
 const profileSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {
-  },
   extraReducers: (builder) => {
     builder
+      // Reducer cases for fetching user profile
       .addCase(fetchProfile.pending, (state) => {
         state.status = 'loading'
       })
       .addCase(fetchProfile.fulfilled, (state, action) => {
         state.status = 'succeeded'
+        // Update profile data from the action payload
         state.firstName = action.payload.body.firstName
         state.lastName = action.payload.body.lastName
         state.email = action.payload.body.email
@@ -32,6 +35,7 @@ const profileSlice = createSlice({
         state.status = 'failed'
         state.error = action.payload
       })
+      // Reducer cases for updating user profile
       .addCase(updateProfile.pending, (state) => {
         state.status = 'loading'
       })
@@ -43,8 +47,9 @@ const profileSlice = createSlice({
         state.status = 'failed'
         state.error = action.payload
       })
+      // Reducer case for signing out
       .addCase(signOut, () => {
-        return initialState
+        return initialState // Reset the profile state when signing out
       })
   }
 })

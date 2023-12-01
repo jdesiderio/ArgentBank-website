@@ -1,3 +1,5 @@
+// Component: displays footer
+
 function Footer () {
   return (
     <footer className="footer">

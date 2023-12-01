@@ -1,5 +1,5 @@
 .edit-title {
-  color: #fff;
+  color: $color-background-default;
 }
 .edit-form {
   display: flex;
@@ -12,7 +12,7 @@
     flex-direction: row;
     align-items: center;
     label {
-      color: #fff;
+      color: $color-background-default;
       width: 100px;
     }
     input {
@@ -20,9 +20,9 @@
       width: 120px;
     }
     input[readonly] {
-      background-color: #e0e0e0; 
+      background-color: $color-input-readonly-bg; 
       cursor: not-allowed;
-      color: #757575;
+      color: $color-input-readonly-text;
     }
   }
   .actions {

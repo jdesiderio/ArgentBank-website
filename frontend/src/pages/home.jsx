@@ -1,3 +1,5 @@
+// Homepage
+
 import Hero from "../components/hero"
 import Features from "../components/features"
 import iconChat from "../assets/img/icon-chat.webp"

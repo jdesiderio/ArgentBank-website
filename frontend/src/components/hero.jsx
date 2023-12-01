@@ -1,3 +1,5 @@
+// Component: display Hero section
+
 function Hero () {
   return (
     <div className="hero">

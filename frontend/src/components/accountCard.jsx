@@ -1,6 +1,8 @@
+// Component: AccountCard displays account information and a "View transactions" button
+
 import Button from "./button"
 
-function AccountCard({ account, amount,balance }) {
+function AccountCard({ account, amount, balance }) {
   return (
     <section className="account">
       <div className="account-content-wrapper">

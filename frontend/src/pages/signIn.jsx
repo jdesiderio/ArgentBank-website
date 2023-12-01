@@ -1,4 +1,6 @@
-import Login from "../components/form"
+// Sign In page
+
+import Login from "../components/loginForm"
 
 function SignIn () {
   return (

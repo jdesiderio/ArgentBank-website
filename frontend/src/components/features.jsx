@@ -1,3 +1,5 @@
+// Component: displays homePage feature cards
+
 import PropTypes from "prop-types"
 
 function FeatureCard ({ imageSrc, imageAlt, title, text }) {
