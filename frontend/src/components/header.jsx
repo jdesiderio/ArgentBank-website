@@ -11,7 +11,7 @@ function Header() {
   const dispatch = useDispatch()
   // Fetch token from the Redux store
   const authState = useSelector((state) => state.auth)
-  const token = authState.user?.token || sessionStorage.getItem('token')
+  const token = authState.user
 
   // Select user profile data from Redux store
   const profile = useSelector(state => state.user)

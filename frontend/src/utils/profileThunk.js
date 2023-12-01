@@ -7,7 +7,7 @@ export const fetchProfile = createAsyncThunk(
   'user/fetchProfile',
   async (_, { getState, rejectWithValue }) => {
     // Get the user token from the Redux state or sessionStorage
-    const token = getState().auth.user?.token || sessionStorage.getItem('token')
+    const token = getState().auth.user
     
     // If no token is found, reject the promise with an error message
     if (!token) {
@@ -39,7 +39,7 @@ export const updateProfile = createAsyncThunk(
   'user/updateProfile',
   async ({ userName }, { getState, rejectWithValue }) => {
     // Get the user token from the Redux state or sessionStorage
-    const token = getState().auth.user?.token || sessionStorage.getItem('token')
+    const token = getState().auth.user
 
     // If no token is found, reject the promise with an error message
     if (!token) {
